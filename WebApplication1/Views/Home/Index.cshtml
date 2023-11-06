@@ -1,15 +1,17 @@
-﻿<div class="parent2" id="main">
+﻿@model WebApplication1.Models.Character
+
+<div class="parent2" id="main">
     <div class="name grid-item">
-        <label>Name:</label>
-        <input type="text" />
-        <label>Level:</label>
-        <input type="number" style="width:3rem; text-align:center;" />
+        <label asp-for="Name">Name:</label>
+        <input asp-for="Name" type="text" />
+        <label asp-for="Level">Level:</label>
+        <input asp-for="Level" type="number" style="width:3rem; text-align:center;" />
     </div>
 
     <div class="class grid-item">
-        <label>Class: </label>
-        <select asp-items="Html.GetEnumSelectList<Class>()" id="TextDivide"></select>
-        <select asp-items="Html.GetEnumSelectList<ClassAdvancement>()"></select>
+        <label asp-for="Class">Class: </label>
+        <select asp-for="Class" asp-items="Html.GetEnumSelectList<Class>()" id="TextDivide"></select>
+        <select asp-for="ClassAdvancement" asp-items="Html.GetEnumSelectList<ClassAdvancement>()"></select>
     </div>
 
     <div class="base grid-item">
@@ -26,8 +28,8 @@
     <div class="hp grid-item">
         <h1>HP</h1>
         <label>Current  / Max</label>
-        <input type="number" class="size-change"/>
-        <input type="number" style="float:right;" class="size-change" />
+        <input asp-for="CurrentHp" type="number" class="size-change" />
+        <input asp-for="MaxHp" type="number" style="float:right;" class="size-change" />
 
         <div class="button-container">
             <button id="changeFontSizeButtonUp">&#9650;</button>
@@ -44,10 +46,10 @@
         </div>
 
         <div class="label-container">
-            <input type="number"/>        
-            <input type="number"/>        
-            <input type="number"/>        
-            <input type="number" />
+            <input asp-for="Speed" type="number" />
+            <input asp-for="Defense" type="number" />
+            <input asp-for="Avoid" type="number" />
+            <input asp-for="BulkBuffer" type="number" />
         </div>
     </div>
 
@@ -95,20 +97,13 @@
             <label>Item</label>
             <label style="margin-left: -5rem;">Quantity</label>
         </div>
+        <partial name="ItemPartial" model="Model" />       
 
-        @foreach (KeyValuePair<string, int> i in Model.Items)
-        {
-            <div>
-                <input type="number" asp-for="@i.Key" style="margin-right: 5px; width: auto;"/>
-                <input type="number" asp-for="@i.Value" style="width: 20%;"/>
-                <button>-</button>
-            </div>
-        }
-
-        <button style="margin: auto 0 0 0;">+</button>
+        <button style="margin: auto 0 0 0;" id="addItemButton">+</button>
     </div>
 </div>
 
+<!-- TODO make ui for spells section -->
 <div class="parent" id="spells">
 
     <div class="grid-item-first">
@@ -118,3 +113,4 @@
         <input type="number" style="width:3rem; text-align:center;" />
     </div>
 </div>
+

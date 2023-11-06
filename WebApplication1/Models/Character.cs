@@ -2,12 +2,12 @@
 
 namespace WebApplication1.Models
 {
+    // TODO add spells info
     public class Character
     {
         public string Name { get; set; }
         public int Level { get; set; }
         public int Speed { get; set; }
-        public int Health { get; set; }
         public int BulkBuffer { get; set; }
         public int CurrentHp { get; set; }
         public int MaxHp { get; set; }

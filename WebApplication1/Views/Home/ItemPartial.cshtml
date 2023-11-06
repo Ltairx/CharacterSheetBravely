@@ -1,0 +1,11 @@
+﻿<div id="itemsContainer">
+    @foreach (KeyValuePair<string, int> i in Model.Items)
+    {
+        <div>
+            <input type="text" asp-for="@i.Key" style="margin-right: 5px; width: auto;" />
+            <input type="number" asp-for="@i.Value" style="width: 20%;" />
+            <button class="remove-button">-</button>
+        </div>
+    }
+
+</div>

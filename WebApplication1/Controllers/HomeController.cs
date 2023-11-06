@@ -4,9 +4,17 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    /*
+     TODO:
+        - deleting item from Items
+        - de/serialize data into json (in character class) and save it on server
+        - export/import json data
+     */
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        Character model;        // TODO multiple users at the same time, change the way character is set
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -14,10 +22,15 @@ namespace WebApplication1.Controllers
         }
 
         public IActionResult Index()
-        {
-            var model = new Character();
-
+        {          
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddItem()
+        {
+            model.Items.Add(" ", 0);                    // TODO change added keys/change dict for List<KeyValuePair<string, int>> or something similar
+            return PartialView("ItemPartial", model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

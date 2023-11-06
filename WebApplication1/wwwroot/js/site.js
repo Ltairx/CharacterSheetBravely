@@ -32,3 +32,5 @@ document.getElementById("changeFontSizeButtonDown").addEventListener("click", fu
     var newFontSize = currentFontSize - 5;
     inputElement.style.fontSize = newFontSize + "px";
 });
+
+// TODO add dynamic reload for data
