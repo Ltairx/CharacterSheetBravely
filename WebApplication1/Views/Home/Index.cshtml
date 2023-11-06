@@ -1,0 +1,120 @@
+﻿<div class="parent2" id="main">
+    <div class="name grid-item">
+        <label>Name:</label>
+        <input type="text" />
+        <label>Level:</label>
+        <input type="number" style="width:3rem; text-align:center;" />
+    </div>
+
+    <div class="class grid-item">
+        <label>Class: </label>
+        <select asp-items="Html.GetEnumSelectList<Class>()" id="TextDivide"></select>
+        <select asp-items="Html.GetEnumSelectList<ClassAdvancement>()"></select>
+    </div>
+
+    <div class="base grid-item">
+        <h1>Base stats</h1>
+        @foreach (KeyValuePair<Stats, int> i in Model.BaseStats)
+        {
+            <div>
+                <label>@i.Key:</label>
+                <input type="number" asp-for="@i.Value" />
+            </div>
+        }
+    </div>
+
+    <div class="hp grid-item">
+        <h1>HP</h1>
+        <label>Current  / Max</label>
+        <input type="number" class="size-change"/>
+        <input type="number" style="float:right;" class="size-change" />
+
+        <div class="button-container">
+            <button id="changeFontSizeButtonUp">&#9650;</button>
+            <button id="changeFontSizeButtonDown">&#9660;</button>
+        </div>
+    </div>
+
+    <div class="defense grid-item">
+        <div class="label-container">
+            <label>Speed</label>
+            <label>Defense</label>
+            <label>Avoid</label>
+            <label>Bulk Buffer</label>
+        </div>
+
+        <div class="label-container">
+            <input type="number"/>        
+            <input type="number"/>        
+            <input type="number"/>        
+            <input type="number" />
+        </div>
+    </div>
+
+    <div class="weapons grid-item">
+        <h1>Weapon ranks</h1>
+        @foreach (KeyValuePair<Weapons, Ranks> i in Model.WeaponRanks)
+        {
+            <div>
+                <label>@i.Key:</label>
+                <select asp-for="@i.Value" asp-items="Html.GetEnumSelectList<Ranks>()">
+                </select>
+            </div>
+        }
+    </div>
+
+    <div class="gauge grid-item">
+        <h1>Gauge stats</h1>
+        @foreach (KeyValuePair<Stats, int> i in Model.BaseStats)
+        {
+            int gauge = i.Value * 3;
+            <div>
+                <label>@i.Key:</label>
+                <input type="number" asp-for="@gauge" />
+            </div>
+        }
+    </div>
+
+    <div class="skills grid-item">
+        <h1>Expertises</h1>
+        @foreach (KeyValuePair<Skills, Ranks> i in Model.Skills)
+        {
+            <div>
+                <label>@i.Key:</label>
+                <select asp-for="@i.Value" asp-items="Html.GetEnumSelectList<Ranks>()">
+                </select>
+
+            </div>
+        }
+    </div>
+
+    <div class="items grid-item">
+        <h1>Inventory</h1>
+
+        <div class="label-container">
+            <label>Item</label>
+            <label style="margin-left: -5rem;">Quantity</label>
+        </div>
+
+        @foreach (KeyValuePair<string, int> i in Model.Items)
+        {
+            <div>
+                <input type="number" asp-for="@i.Key" style="margin-right: 5px; width: auto;"/>
+                <input type="number" asp-for="@i.Value" style="width: 20%;"/>
+                <button>-</button>
+            </div>
+        }
+
+        <button style="margin: auto 0 0 0;">+</button>
+    </div>
+</div>
+
+<div class="parent" id="spells">
+
+    <div class="grid-item-first">
+        <label>Spell:</label>
+        <input type="text" />
+        <label>Level:</label>
+        <input type="number" style="width:3rem; text-align:center;" />
+    </div>
+</div>
